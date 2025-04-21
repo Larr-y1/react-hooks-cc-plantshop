@@ -1,40 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React from "react";
 
-function NewPlantForm({ onAddPlant }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    image: "",
-    price: "",
-  });
-
-  const handleChange = (e) => {
-    const key = e.target.name;
-    const value = e.target.value;
-    setFormData({
-      ...formData,
-      [key]: value,
-    });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const newPlant = {
-      name: formData.name,
-      image: formData.image,
-      price: formData.price
-    }
-
-    try{
-    const response = await axios.post('http://localhost:6001/plants', newPlant);
-    onAddPlant(response.data);
-    setFormData({ name: "", image: "", price: "" });
-    } catch (err) {
-      console.error('Error adding expense:', err)
-    }
-  }
-
+function NewPlantForm() {
   return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
